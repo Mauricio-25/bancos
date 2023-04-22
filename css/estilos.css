@@ -490,6 +490,7 @@ a {
 .casos {
     background-color: var(--blanco);
     color: var(--negro);
+    padding-bottom: clamp(260px, 17.36vw, 250px);
 }
 .casos h3 {
     margin-top: clamp( 40px,4.86vw, 80px); /* 80px */
@@ -574,11 +575,72 @@ a {
     display: flex;
     justify-content: center;
 }
-.antes-despues {
-    transform: translateY(-200px);
-}
+
 
 /* ! caracteristicas */
+
+/* *  Con-dignita/separador */
+.con-dignita {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+    transform: translateY(-200px);
+}
+.con-dignita > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: #dedede;
+    border-radius: 20px;
+}
+.con-dignita > *:nth-child(1) {
+    padding: 29.5px 20px;
+}
+.con-dignita > *:nth-child(2) {
+    padding: 0 20px;
+}
+.con-dignita > div > div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.con-dignita .circulo {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    width: clamp(150px, 15.97vw, 230px);
+    height: clamp(150px, 15.97vw, 230px);
+    padding: 15px;
+    position: relative;
+    border: 10px solid #14A44D;
+}
+.con-dignita > *:first-child .circulo {
+    border: 10px solid #d60000;
+}
+.con-dignita .porcentaje b {
+    font-size: var(--h2-size);
+}
+.con-dignita .columna2 {
+    display: inline-block;
+    text-align: center;
+}
+.con-dignita .columna2 > * {
+    font-weight: bold;
+    font-size: var(--h3-size);
+}
+.con-dignita .mover {
+    transform: translateY(-29px);
+}
+
+
 .caract {
     margin-top: -100px;
     padding-top: 0px;
@@ -1192,7 +1254,7 @@ a {
     color: var(--colorPrimario);
 }
 .blog picture {
-    width: clamp(224px, 19.2vw, 296px); /* 276.48px */;
+    width: clamp(150px, 13.89vw, 250px); /* 200px */;
     text-align: center;
     padding: clamp(13px, 1.39vw, 22px) 0; /* 20px */
     align-self: center;
@@ -1540,6 +1602,28 @@ a {
     }
     .blog picture {
         top: -87px;
+    }
+
+    /* ! Con-dignita */
+    .con-dignita {
+        flex-direction: column;
+    }
+    .con-dignita .porcentaje b {
+        font-size: var(--h2-size-res);
+    }
+    .con-dignita .columna2 > * {
+        font-size: var(--h3-size-res);
+    }
+    .con-dignita > *:first-child img {
+        width: 100px;
+        object-fit: contain;
+    }
+    .con-dignita > *:nth-child(2) img {
+        width: 152px;
+        object-fit: contain;
+    }
+    .con-dignita > *:nth-child(2) {
+        width: 365px;
     }
     
 }
