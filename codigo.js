@@ -267,3 +267,129 @@ function eliminar() {
     }, 3000);
   }
 }
+
+
+// ! ORGANIGRAMA
+let boton1 = [];
+boton1 = document.querySelectorAll(".boton1");
+let boton2 = [];
+boton2 = document.querySelectorAll(".boton2");
+let boton3 = [];
+boton3 = document.querySelectorAll(".boton3");
+let boton4 = [];
+boton4 = document.querySelectorAll(".boton4");
+let boton5 = [];
+boton5 = document.querySelectorAll(".boton5");
+let boton6 = [];
+boton6 = document.querySelectorAll(".boton6");
+let boton7 = [];
+boton7 = document.querySelectorAll(".boton7");
+let boton8 = [];
+boton8 = document.querySelectorAll(".boton8");
+let boton9 = [];
+boton9 = document.querySelectorAll(".boton9");
+let boton10 = [];
+boton10 = document.querySelectorAll(".boton10");
+
+function abrir1() {
+  for (i=0; i<boton1.length; i++) {
+    boton1[i].style.display = "flex";
+  }
+}
+function abrir2() {
+  for (i=0; i<boton2.length; i++) {
+    boton2[i].style.display = "flex";
+  }
+}
+function abrir3() {
+  for (i=0; i<boton3.length; i++) {
+    boton3[i].style.display = "flex";
+  }
+}
+function abrir4() {
+  for (i=0; i<boton4.length; i++) {
+    boton4[i].style.display = "flex";
+  }
+}
+function abrir5() {
+  for (i=0; i<boton5.length; i++) {
+    boton5[i].style.display = "flex";
+  }
+}
+function abrir6() {
+  for (i=0; i<boton6.length; i++) {
+    boton6[i].style.display = "flex";
+  }
+}
+function abrir7() {
+  for (i=0; i<boton7.length; i++) {
+    boton7[i].style.display = "flex";
+  }
+}
+function abrir8() {
+  for (i=0; i<boton8.length; i++) {
+    boton8[i].style.display = "flex";
+  }
+}
+function abrir9() {
+  for (i=0; i<boton9.length; i++) {
+    boton9[i].style.display = "flex";
+  }
+}
+function abrir10() {
+  for (i=0; i<boton10.length; i++) {
+    boton10[i].style.display = "flex";
+  }
+}
+
+// * Cambiar color de los mini-circulos
+let btn1 = document.querySelector(".btn1");
+btn1.addEventListener("click", ()=>{
+  btn1.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn2 = document.querySelector(".btn2");
+btn2.addEventListener("click", ()=>{
+  btn2.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn3 = document.querySelector(".btn3");
+btn3.addEventListener("click", ()=>{
+  btn3.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn4 = document.querySelector(".btn4");
+btn4.addEventListener("click", ()=>{
+  btn4.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn5 = document.querySelector(".btn5");
+btn5.addEventListener("click", ()=>{
+  btn5.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn6 = document.querySelector(".btn6");
+btn6.addEventListener("click", ()=>{
+  btn6.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn7 = document.querySelector(".btn7");
+btn7.addEventListener("click", ()=>{
+  btn7.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn8 = document.querySelector(".btn8");
+btn8.addEventListener("click", ()=>{
+  btn8.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn9 = document.querySelector(".btn9");
+btn9.addEventListener("click", ()=>{
+  btn9.style.backgroundColor = "var(--colorPrimario)";
+})
+
+let btn10 = document.querySelector(".btn10");
+btn10.addEventListener("click", ()=>{
+  btn10.style.backgroundColor = "var(--colorPrimario)";
+})
+
