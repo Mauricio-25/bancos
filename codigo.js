@@ -133,12 +133,46 @@ function moverIzquierda(flecha) { // Clonar y luego mover
 for (i=0; i<carrusel__card.length; i++) {
   carrusel__card[i].setAttribute('onclick', 'seleccionar(this)');
 }
+
 function seleccionar(card) {
   card.classList.toggle("carrusel__card-seleccionado");
   card.children[0].classList.toggle("carrusel__boton-seleccionado");
   card.children[1].classList.toggle("carrusel__pic-seleccionado");
 
   llenarFomulario();
+
+  // * Mostrar el mensaje
+  let mensajeAgregado = document.querySelector(".mensaje-agregado");
+  let mensajeEliminado = document.querySelector(".mensaje-eliminado");
+
+  if (card.classList.contains("carrusel__card-seleccionado")) {
+    mensajeAgregado.style.display = "inline-block";
+    mensajeAgregado.style.zIndex = "2";
+    setTimeout(() => {
+      mensajeAgregado.style.display = "none";
+      mensajeAgregado.style.zIndex = "1";
+      mensajeAgregado.style.opacity = "0";
+    }, 1500);
+
+    setTimeout(() => {
+      mensajeAgregado.style.opacity = "1";
+      mensajeAgregado.style.transition = "0.5s ease all";
+    }, 100);
+
+  } else {
+    mensajeEliminado.style.display = "inline-block";
+    mensajeEliminado.style.zIndex = "2";
+    setTimeout(() => {
+      mensajeEliminado.style.display = "none";
+      mensajeEliminado.style.zIndex = "1";
+      mensajeEliminado.style.opacity = "0";
+    }, 1500);
+
+    setTimeout(() => {
+      mensajeEliminado.style.opacity = "1";
+      mensajeEliminado.style.transition = "0.5s ease all";
+    }, 100);
+  }
 }
 
 

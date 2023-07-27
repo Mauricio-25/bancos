@@ -32,7 +32,7 @@
 * {
     font-family: 'Poppins', sans-serif;
     font-size: inherit;
-    font-weight: 400;
+    font-weight: inherit;
     color: inherit;
 }
 
@@ -44,6 +44,7 @@ body {
     background-color: var(--negro);
     font-size: var(--parrafo);
     color: var(--blanco);
+    font-weight: 400;
 }
 h1 {
     font-size: var(--subtitulo_grande);
@@ -443,6 +444,61 @@ a {
     .procesos__eliminar:hover {
         background-color: var(--blanco);
     }
+
+
+
+/* * MENSAJE */
+.mensaje {
+    display: none;
+    box-shadow: 0px 0px 5px var(--gris);
+    border-radius: 20px;
+    position: fixed;
+    right: clamp(15px, 2.903vw, 30px);
+    top: clamp(15px, 2.903vw, 30px);
+    z-index: 1;
+    transition: 0.5s;
+    opacity: 0;
+}
+.mensaje__encabezado {
+    border-radius: 20px 20px 0 0;
+    color: var(--blanco);
+    padding: clamp(13px, 2vw, 18px);
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(4px, 0.71vw, 7px);
+}
+.mensaje__icono {
+    font-size: clamp(20px, 2.903vw, 25px);
+}
+.mensaje__cuerpo {
+    background-color: var(--blanco);
+    padding: clamp(15px, 2.258vw, 20px);
+    border-radius: 0 0 20px 20px;
+    font-size: clamp(12px, 1.742vw, 15px);
+}
+.mensaje__enlace {
+    border-radius: 20px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.mensaje__encabezado-agregado {
+    background-color: #1BBB01;
+}
+.mensaje__enlace-agregado {
+    border: 2px solid #1BBB01;
+}
+.mensaje__encabezado-eliminado {
+    background-color: #C80000;
+}
+.mensaje__enlace-eliminado {
+    border: 2px solid #C80000;
+}
+
 
 /* ?  --------------------------------------------------------- VERSION TABLET -------------------------------------------------------------------- */
 
