@@ -1,395 +1,280 @@
 
-// Listas de procesos core
 
-const contenedorCards = document.querySelector(".cards-contenedor");
+// ! --------------------------------------------------------------------------------------------------------------------------------------------
+// !                                                               SECCION CORE
+// ! --------------------------------------------------------------------------------------------------------------------------------------------
 
-contenedorCards.addEventListener("click", function(event) {
-    if (event.target.closest(".core .cards-contenedor > div")) {
-        let elemento;
-      if (event.target.tagName === "DIV") {
-        elemento = event.target;
-      }
-      else {
-        elemento = event.target.parentNode;
-      }
+// ?  --------------------------------------------------------- DESPLEGAR -------------------------------------------------------------------- */
 
-      elemento.classList.toggle("select");
+function desplegar(e) {
+  const circulo  = e;
+  const bloque = circulo.parentNode.parentNode;
+  const flecha = circulo.children[0];
 
-    }
-});
+  if (circulo.classList.contains("circulo-oscuro")) {
+    circulo.classList.toggle("cirDesplegado-oscuro");
+    flecha.classList.toggle("fleDesplegado-oscuro");
+    bloque.classList.toggle("bloDesplegado");
+  } else {
+    circulo.classList.toggle("cirDesplegado");
+    flecha.classList.toggle("fleDesplegado");
+    bloque.classList.toggle("bloDesplegado");
+  }
 
-
-// Listas de procesos general
-
-// *efecto de hover
-let div = [];
-div = document.querySelectorAll(".general .contendor-cards > div");
-
-let portada = [];
-portada = document.querySelectorAll(".general .portada");
-
-let contenido = [];
-contenido = document.querySelectorAll(".general .contenido");
-
-for (let i = 0; i < div.length; i++) {
-  div[i].addEventListener("mouseenter", (function(index) {
-    return function() {
-      portada[index].style.opacity = "0";
-      portada[index].style.zIndex = "1";
-      contenido[index].style.opacity = "1";
-    }
-  })(i))
-
-  div[i].addEventListener("mouseleave", (function(index) {
-    return function() {
-      portada[index].style.opacity = "1";
-      portada[index].style.zIndex = "3";
-      contenido[index].style.opacity = "0";
-    }
-  })(i))
-}
-
-// *Evento de despliegle
-let subMenu = [];
-subMenu = document.querySelectorAll(".general .sub-menu");
-
-let item = [];
-item = document.querySelectorAll(".general .item");
-
-for (let i = 0; i < subMenu.length; i++) {
-  subMenu[i].addEventListener("click", (function(index) {
-    return function() {
-      subMenu[i].parentNode.classList.toggle("active");
-      
-    }
-  })(i))
-}
-
-// *Evento de seleccionar los procesos
-let despegable = [];
-despegable = document.querySelectorAll(".general .despegable");
-
-for (i=0; i< despegable.length; i++) {
-  despegable[i].addEventListener("click", function(event) {
-    if (event.target.closest(".general .despegable .circulo")) {
-        let elemento;
-      if (event.target.tagName === "DIV") {
-        elemento = event.target;
-      }
-      else {
-        elemento = event.target.parentNode;
-      }
-
-      elemento.classList.toggle("select");
-
-    }
-  })
 }
 
 
-// Te ayudamos
-const contenedor = document.querySelector(".empezar-terminar .contenido > div");
+// ?  --------------------------------------------- AUTOMATIZAR EL TAMAÑO DEL CARRUSEL -------------------------------------------------------- */
 
-const progreso = document.querySelector(".empezar-terminar .progreso");
+// * carrusel__contenedor
+const carrusel__contenedor = document.querySelector(".carrusel__contenedor");
+let carrusel__card = [];
+carrusel__card = document.querySelectorAll(".carrusel__card");
+/*
+let tamañoContenedor;
+if (carrusel__card.length % 2 == 0) {
+  tamañoContenedor = (carrusel__card.length / 2) * 100;
+} else {
+  tamañoContenedor = ((carrusel__card.length / 2) * 100) + 2;
+}
 
-let iconos = [];
-iconos = document.querySelectorAll(".empezar-terminar .iconos > div img");
+carrusel__contenedor.style.width = `${tamañoContenedor}%`;
 
-let barra = [];
-barra = document.querySelectorAll(".empezar-terminar .barra-res > div > div");
 
-let barraContenedor = [];
-barraContenedor = document.querySelectorAll(".empezar-terminar .barra-res > div");
+// * carrusel__card
+let tamañoCard = 48 * 100 / tamañoContenedor;
+for (i=0; i < carrusel__card.length; i++) {
+  carrusel__card[i].style.width = `${tamañoCard}%`;
+}
 
-function icono(x) {
-  contenedor.style.transform = `translate(${x}%)`;
+// * separacion
+let espacio = (4 * 100 / tamañoContenedor)/2;
+for (i=0; i < carrusel__card.length; i++) {
+  carrusel__card[i].style.marginRight = `${espacio}%`;
+  carrusel__card[i].style.marginLeft = `${espacio}%`;
+}
+*/
 
-  progreso.style.width = `${Math.abs(x)+25}%`;
+// ?  ------------------------------------------------------- MOVER CARRUSEL ------------------------------------------------------------------ */
 
+let margin = 0;
+
+function moverDerecha(flecha) { // Mover y luego clonar
+  margin -= 100;
+  carrusel__contenedor.style.marginLeft = `${margin}%`;
+  carrusel__contenedor.style.transition = "1s ease all";
+
+  setTimeout(() => {
+    clonarPrimeroAUltimo();
+    clonarPrimeroAUltimo();
+
+    margin += 100;
+    carrusel__contenedor.style.marginLeft = `${margin}%`;
+    carrusel__contenedor.style.transition = "none";
+  }, 1000);
+
+  // * No se pueda desplazar hasta que termine la animación
+  flecha.removeAttribute('onclick');
+
+  setTimeout(() => {
+    flecha.setAttribute('onclick', 'moverDerecha(this)');
+  }, 1000);
+
+  // * Funcion de clonar
+  function clonarPrimeroAUltimo() {
+    let clon = carrusel__contenedor.children[0].cloneNode(true);
+    let aux;
+    for (i=carrusel__contenedor.children.length-1; i>=0; i--) {
+        aux = carrusel__contenedor.children[i].cloneNode(true);
+        carrusel__contenedor.replaceChild(clon,carrusel__contenedor.children[i]);
+        clon = aux.cloneNode(true);
+    }
+  }
+
+}
+
+
+function moverIzquierda(flecha) { // Clonar y luego mover
+  margin -= 100;
+  carrusel__contenedor.style.marginLeft = `${margin}%`;
+  carrusel__contenedor.style.transition = "none";
+
+  clonarUltimoAPrimero();
+  clonarUltimoAPrimero();
+
+  setTimeout(() => {
+    margin += 100;
+    carrusel__contenedor.style.marginLeft = `${margin}%`;
+    carrusel__contenedor.style.transition = "1s ease all";
+  }, 10);
+
+  // * No se pueda desplazar hasta que termine la animación
+  flecha.removeAttribute('onclick');
+
+  setTimeout(() => {
+    flecha.setAttribute('onclick', 'moverIzquierda(this)');
+  }, 1000);
+
+  // * Funcion de clonar
+  function clonarUltimoAPrimero() {
+    let clon = carrusel__contenedor.children[carrusel__contenedor.children.length-1].cloneNode(true);
+    let aux;
+    for (i=0; i<carrusel__contenedor.children.length; i++) {
+      aux = carrusel__contenedor.children[i].cloneNode(true);
+      carrusel__contenedor.replaceChild(clon,carrusel__contenedor.children[i]);
+      clon = aux.cloneNode(true);
+    }
+  }
+}
+
+
+// ? ---------------------------------------------- AÑADIR DISEÑO AL SER SELECCIONADO ------------------------------------------------------- */
+
+for (i=0; i<carrusel__card.length; i++) {
+  carrusel__card[i].setAttribute('onclick', 'seleccionar(this)');
+}
+function seleccionar(card) {
+  card.classList.toggle("carrusel__card-seleccionado");
+  card.children[0].classList.toggle("carrusel__boton-seleccionado");
+  card.children[1].classList.toggle("carrusel__pic-seleccionado");
+
+  llenarFomulario();
+}
+
+
+// ? ------------------------------------------- CAMBIAR EL ESTILO DEL CARRUSEL (RESPONSIVE) -------------------------------------------------- */
+
+if (window.matchMedia("(max-width: 767px)").matches) {
+  // El código aquí se ejecutará si el tamaño de la pantalla es menor a 767px
   
+  const btnIzq = document.querySelector(".carrusel__control-izq");
+  btnIzq.setAttribute('onclick', 'moverIzquierdaResp(this)');
 
-  for (i=0; i<iconos.length; i++) {
-    if (i == Math.abs(x)/25) {
-      iconos[i].style.filter = "grayscale(0%)";
-    } else {
-      iconos[i].style.filter = "grayscale(100%)";
+  const btnDer = document.querySelector(".carrusel__control-der");
+  btnDer.setAttribute('onclick', 'moverDerechaRes(this)');
+
+}
+
+function moverDerechaRes(flecha) { // Mover y luego clonar
+  margin -= 100;
+  carrusel__contenedor.style.marginLeft = `${margin}%`;
+  carrusel__contenedor.style.transition = "1s ease all";
+
+  setTimeout(() => {
+    clonarPrimeroAUltimo();
+
+    margin += 100;
+    carrusel__contenedor.style.marginLeft = `${margin}%`;
+    carrusel__contenedor.style.transition = "none";
+  }, 1000);
+
+  // * No se pueda desplazar hasta que termine la animación
+  flecha.removeAttribute('onclick');
+
+  setTimeout(() => {
+    flecha.setAttribute('onclick', 'moverDerechaRes(this)');
+  }, 1000);
+
+  // * Funcion de clonar
+  function clonarPrimeroAUltimo() {
+    let clon = carrusel__contenedor.children[0].cloneNode(true);
+    let aux;
+    for (i=carrusel__contenedor.children.length-1; i>=0; i--) {
+        aux = carrusel__contenedor.children[i].cloneNode(true);
+        carrusel__contenedor.replaceChild(clon,carrusel__contenedor.children[i]);
+        clon = aux.cloneNode(true);
     }
   }
 
-  for (i=0; i<barra.length; i++) {
-    if (i == Math.abs(x)/25) {
-      barra[i].style.backgroundColor = "var(--colorPrimario)";
-    } else {
-      barra[i].style.backgroundColor = "var(--colorSecundario)";
-    }
-  }
+}
 
-  for (i=0; i<barraContenedor.length; i++) {
-    if (i == Math.abs(x)/25) {
-      barraContenedor[i].style.backgroundColor = "var(--colorPrimario)";
-      barraContenedor[i].style.borderRadius = "0 20px 20px 0";
+function moverIzquierdaResp(flecha) { // Clonar y luego mover
+  margin -= 100;
+  carrusel__contenedor.style.marginLeft = `${margin}%`;
+  carrusel__contenedor.style.transition = "none";
 
-      for (j=1; j<barraContenedor.length; j++) {
-        if (j == i) {
-          barraContenedor[j].style.backgroundColor = "var(--colorPrimario)";
-          barraContenedor[j-1].style.backgroundColor = "var(--colorPrimario)";
-          barraContenedor[j-1].style.borderRadius = "20px 0 0 20px";
-          barra[j-1].style.borderLeft = "none";
-        }
-      }
+  clonarUltimoAPrimero();
 
-    } else {
-      barraContenedor[i].style.backgroundColor = "var(--colorSecundario)";
-      barraContenedor[i].style.borderRadius = "0 0 0 0";
+  setTimeout(() => {
+    margin += 100;
+    carrusel__contenedor.style.marginLeft = `${margin}%`;
+    carrusel__contenedor.style.transition = "1s ease all";
+  }, 10);
+
+  // * No se pueda desplazar hasta que termine la animación
+  flecha.removeAttribute('onclick');
+
+  setTimeout(() => {
+    flecha.setAttribute('onclick', 'moverIzquierdaResp(this)');
+  }, 1000);
+
+  // * Funcion de clonar
+  function clonarUltimoAPrimero() {
+    let clon = carrusel__contenedor.children[carrusel__contenedor.children.length-1].cloneNode(true);
+    let aux;
+    for (i=0; i<carrusel__contenedor.children.length; i++) {
+      aux = carrusel__contenedor.children[i].cloneNode(true);
+      carrusel__contenedor.replaceChild(clon,carrusel__contenedor.children[i]);
+      clon = aux.cloneNode(true);
     }
   }
 }
 
 
+// ? ------------------------------------------------------ AÑADIR AL FORMULARIO --------------------------------------------------------------- */
 
-// Formulario
+function llenarFomulario() {
+  // * LLenar los procesos core
+  let seleccionadosCore = [];
+  seleccionadosCore = document.querySelectorAll(".carrusel__card-seleccionado");
 
-// Añadir la funcion a todos los botones con la clase .select
-let items1 = [];
-items1 = document.querySelectorAll(".core .cards-contenedor");
+  let procesos = document.querySelector(".procesos");
+  procesos.innerHTML = "";
 
-for (var i = 0; i < items1.length; i++) {
-  items1[i].addEventListener("click", function() {
-    enviar();
-  });
-}
+  for (i=0; i<seleccionadosCore.length; i++) {
+    let subtitulo = seleccionadosCore[i].children[2].innerHTML;
+    let texto = seleccionadosCore[i].children[3].innerHTML;
+    let etiquetas = seleccionadosCore[i].children[4];
+    var etiquetasRpa = etiquetas.querySelector('.etiquetas__rpa');
+    var etiquetasIa = etiquetas.querySelector('.etiquetas__ia');
 
-let items2 = [];
-items2 = document.querySelectorAll(".general .circulo");
-
-for (var i = 0; i < items2.length; i++) {
-  items2[i].addEventListener("click", function() {
-    enviar();
-  });
-}
-
-//
-function enviar() {
-  setTimeout(function() {
-
-    let select = [];
-    select = document.querySelectorAll(".select");
-
-    procesos = document.querySelector(".formulario .procesos");
-
-    let elemento = "";
-    let texto;
-    let etiqueta="";
-
-    for (i=0; i<select.length; i++) {
-      if (select[i].classList[0] == "select") {
-        texto = select[i].children[1].innerText;
-      }
-
-      else{
-        texto = select[i].parentNode.parentNode.children[1].innerText;
-        etiqueta = select[i].parentNode.parentNode.children[2].innerHTML;
-      }
-
-      elemento += `
-          <div>
-            <p>${texto}</p>
-            <div class="contenedor-etiquetas">
-              ${etiqueta}
-            </div>
-          </div>
-        `;
+    if (etiquetasRpa !== null) {
+      etiquetasRpa.classList.add('etiquetas__rpa-oscuro');
     }
+    if (etiquetasIa !== null) {
+      etiquetasIa.classList.add('etiquetas__ia-oscuro');
+    }
+  
+    codigoHTML = etiquetas.outerHTML;
     
-    procesos.innerHTML = elemento;
+    procesos.innerHTML += `
+      <div class="procesos__card">
+        <div class="procesos__eliminar"><i class="fa-solid fa-xmark" onclick="eliminarProcesoCore('${subtitulo}')"></i></div>
 
-  }, 100);
+        <div class="procesos__contenido">
+            <strong class="procesos__subtitulo">${subtitulo}</strong>
+            <p class="procesos__texto">
+                ${texto}
+            </p>
+        </div>
+
+        ${codigoHTML}
+      </div>
+    `;
+
+  }
+
+  // * Llenar los procesos generales 
 }
 
 
-// ! Mensaje
-let core = [];
-core = document.querySelectorAll(".core .cards-contenedor > div");
+function eliminarProcesoCore(nombre) {
+  let seleccionadosCore = [];
+  seleccionadosCore = document.querySelectorAll(".carrusel__card-seleccionado");
 
-for (var i = 0; i < core.length; i++) {
-  core[i].addEventListener("click", (function(index) {
-    return function () {
-      if (core[index].classList.contains("select")) {
-        eliminar();
-      } else {
-        agregar();
-      }
+  for (i=0; i<seleccionadosCore.length; i++) {
+    if (seleccionadosCore[i].querySelector('.carrusel__titulo').innerHTML == nombre) {
+      seleccionar(seleccionadosCore[i]);
     }
-  })(i));
-}
-
-let general = [];
-general = document.querySelectorAll(".general .circulo");
-
-
-for (var i = 0; i < general.length; i++) {
-  general[i].addEventListener("click", (function(index) {
-    return function () {
-      setTimeout(function(){
-        if (general[index].classList.contains("select")) {
-          agregar();
-        } else {
-          eliminar();
-        }
-      }, 100)
-    }
-  })(i));
-}
-
-//
-function agregar() {
-  let mensaje = document.querySelector(".agregar");
-
-  if (!mensaje.classList.contains("active3")) {
-    mensaje.style.display = "block";
-    mensaje.classList.add("active3");
-    setTimeout(function() {
-      mensaje.classList.remove("active3");
-      mensaje.style.display = "none";
-    }, 3000);
   }
 }
-
-function eliminar() {
-  let mensaje = document.querySelector(".eliminar");
-
-  if (!mensaje.classList.contains("active3")) {
-    mensaje.style.display = "block";
-    mensaje.classList.add("active3");
-    setTimeout(function() {
-      mensaje.classList.remove("active3");
-      mensaje.style.display = "none";
-    }, 3000);
-  }
-}
-
-
-// ! ORGANIGRAMA
-let boton1 = [];
-boton1 = document.querySelectorAll(".boton1");
-let boton2 = [];
-boton2 = document.querySelectorAll(".boton2");
-let boton3 = [];
-boton3 = document.querySelectorAll(".boton3");
-let boton4 = [];
-boton4 = document.querySelectorAll(".boton4");
-let boton5 = [];
-boton5 = document.querySelectorAll(".boton5");
-let boton6 = [];
-boton6 = document.querySelectorAll(".boton6");
-let boton7 = [];
-boton7 = document.querySelectorAll(".boton7");
-let boton8 = [];
-boton8 = document.querySelectorAll(".boton8");
-let boton9 = [];
-boton9 = document.querySelectorAll(".boton9");
-let boton10 = [];
-boton10 = document.querySelectorAll(".boton10");
-
-function abrir1() {
-  for (i=0; i<boton1.length; i++) {
-    boton1[i].style.display = "flex";
-  }
-}
-function abrir2() {
-  for (i=0; i<boton2.length; i++) {
-    boton2[i].style.display = "flex";
-  }
-}
-function abrir3() {
-  for (i=0; i<boton3.length; i++) {
-    boton3[i].style.display = "flex";
-  }
-}
-function abrir4() {
-  for (i=0; i<boton4.length; i++) {
-    boton4[i].style.display = "flex";
-  }
-}
-function abrir5() {
-  for (i=0; i<boton5.length; i++) {
-    boton5[i].style.display = "flex";
-  }
-}
-function abrir6() {
-  for (i=0; i<boton6.length; i++) {
-    boton6[i].style.display = "flex";
-  }
-}
-function abrir7() {
-  for (i=0; i<boton7.length; i++) {
-    boton7[i].style.display = "flex";
-  }
-}
-function abrir8() {
-  for (i=0; i<boton8.length; i++) {
-    boton8[i].style.display = "flex";
-  }
-}
-function abrir9() {
-  for (i=0; i<boton9.length; i++) {
-    boton9[i].style.display = "flex";
-  }
-}
-function abrir10() {
-  for (i=0; i<boton10.length; i++) {
-    boton10[i].style.display = "flex";
-  }
-}
-
-// * Cambiar color de los mini-circulos
-let btn1 = document.querySelector(".btn1");
-btn1.addEventListener("click", ()=>{
-  btn1.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn2 = document.querySelector(".btn2");
-btn2.addEventListener("click", ()=>{
-  btn2.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn3 = document.querySelector(".btn3");
-btn3.addEventListener("click", ()=>{
-  btn3.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn4 = document.querySelector(".btn4");
-btn4.addEventListener("click", ()=>{
-  btn4.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn5 = document.querySelector(".btn5");
-btn5.addEventListener("click", ()=>{
-  btn5.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn6 = document.querySelector(".btn6");
-btn6.addEventListener("click", ()=>{
-  btn6.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn7 = document.querySelector(".btn7");
-btn7.addEventListener("click", ()=>{
-  btn7.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn8 = document.querySelector(".btn8");
-btn8.addEventListener("click", ()=>{
-  btn8.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn9 = document.querySelector(".btn9");
-btn9.addEventListener("click", ()=>{
-  btn9.style.backgroundColor = "var(--colorPrimario)";
-})
-
-let btn10 = document.querySelector(".btn10");
-btn10.addEventListener("click", ()=>{
-  btn10.style.backgroundColor = "var(--colorPrimario)";
-})
-
