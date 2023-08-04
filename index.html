@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dignita | Plantilla</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/estilos.css">
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +14,10 @@
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/745852fa0a.js" crossorigin="anonymous"></script>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
     <!-- Icono Navegador -->
     <link rel="icon" href="https://dignita.tech/wp-content/uploads/2022/05/cropped-digniya-ico-32x32.png" sizes="32x32" />
     <link rel="icon" href="https://dignita.tech/wp-content/uploads/2022/05/cropped-digniya-ico-192x192.png" sizes="192x192" />
@@ -25,21 +25,68 @@
 
 </head>
 <body>
+
     
-    <section class="seccion secCore">
-        <div class="bloque">
-            <div class="elemento">
-                <h2 class="h2">Procesos de operacion (Coordinacion)
-                    <div class="subrayado">
-                        <div class="subrayado__linea1"></div>
-                        <div class="subrayado__linea2"></div>
-                    </div>
-                </h2>
-                <div class="circulo" onclick="desplegar(this)">
-                    <i class="fa-solid fa-angle-down circulo__flecha"></i>
+    <!-- ! ---------------------- BUSCADOR ---------------------- -->
+    <section class="seccion secBuscar" id="buscador">
+        <h2 class="h2 secBuscar__h2">
+            ¿Estás buscando que procesos podrás automatizar en tu industria Minera?
+        </h2>
+
+        <p class="secBuscar__p">
+            Lo hemos dividido en 2 tipos: los procesos de supervisión y coordinación (operación) y los procesos generales. ¡Busca tu proceso y ahorra tiempo y dinero!
+        </p>
+
+        <div class="buscador">
+            <div class="buscador__contenedor">
+                <div class="buscador__col1">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="¿Qué proceso estas buscando?" class="buscador__input buscador__input-pro">
                 </div>
+                <div class="combobox">
+                    <div class="combobox__contenedor" >
+                        <input type="text" class="buscador__input buscador__input-cmb" placeholder="Área" disabled>
+                        <i class="fa-solid fa-caret-down circulo combobox__flecha"></i>
+                    </div>
+                    <div class="bloque bloque-cmb">
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Operación</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Finanzas</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Logística</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Producción</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Adquisición</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Ventas</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Marketing</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Atención al Cliente</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Recursos Humanos</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">Legal</div>
+                        <div class="combobox__opciones" onclick="escribirCmb(this)">TI</div>
+                    </div>
+                </div>
+
             </div>
+            <div class="buscador__lista">
+                <div class="buscador__item buscador__item-ultimo"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>No se encontraron resultados</div>
+            </div>
+        </div>
+    </section>
+
     
+    <!-- ! ---------------------- CORE ---------------------- -->
+
+    <section class="seccion secCore">
+        <div class="elemento">
+            <h2 class="h2">Procesos de operacion (Coordinacion)
+                <div class="subrayado">
+                    <div class="subrayado__linea1"></div>
+                    <div class="subrayado__linea2"></div>
+                </div>
+            </h2>
+            <div class="circulo">
+                <i class="fa-solid fa-angle-down circulo__flecha"></i>
+            </div>
+        </div>
+
+        <div class="bloque">
             <div class="contenido">
                 <h3 class="contenido__h3">Procesos únicos de la industria Minera</h3>
                 <p class="contenido__descripcion">
@@ -122,20 +169,1218 @@
 
     </section>
 
-    <section class="seccion secFormulario" id="formulario">
-        <div class="secFormulario__bloque">
-            <div class="elemento">
-                <h2 class="h2">Formulario
-                    <div class="subrayado">
-                        <div class="subrayado__linea1"></div>
-                        <div class="subrayado__linea2"></div>
-                    </div>
-                </h2>
-                <div class="circulo circulo-oscuro" onclick="desplegar(this)">
-                    <i class="fa-solid fa-angle-down circulo__flecha circulo__flecha-oscuro"></i>
+    <!-- ! ---------------------- GENERAL ---------------------- -->
+
+    <section class="seccion secGeneral">
+        <div class="elemento">
+            <h2 class="h2">Procesos Generales
+                <div class="subrayado">
+                    <div class="subrayado__linea1"></div>
+                    <div class="subrayado__linea2"></div>
                 </div>
+            </h2>
+            <div class="circulo">
+                <i class="fa-solid fa-angle-down circulo__flecha"></i>
+            </div>
+        </div>
+
+        <div class="bloque">
+            <div class="contenido">
+                <h3 class="contenido__h3">Todos los procesos que se pueden automatizar</h3>
+                <p class="contenido__descripcion">
+                    Tenemos más de 300 procesos automatizables en 5  diferentes áreas, despliega las áreas que más te interese y selecciona el proceso para agregarlo al formulario.
+                </p>
             </div>
 
+            <div class="contenedor">
+                <div class="secGeneral">
+                    <div class="secGeneral__columna1"></div>
+                    
+                    <div class="secGeneral__columna2">
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Finanzas</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">60 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Empleados de <br>teneduría de libros</div>
+                                        <div class="puestos__card">Contabilidad<br>y auditoria</div>
+                                        <div class="puestos__card">Contadores<br> y auditores</div>
+                                        <div class="puestos__card">Cobros de facturas <br>y cuentas</div>
+                                        <div class="puestos__card">Analista de<br> presupuesto</div>
+                                        <div class="puestos__card">Directores<br> ejecutivos</div>
+                                        <div class="puestos__card">Gerentes<br> financieros</div>
+                                        <div class="puestos__card">Empleados de facturación<br>y contabilización</div>
+                                        <div class="puestos__card">Preparadores<br>de impuestos</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/finanzas.png" alt="finanzas" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Finanzas</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Logística</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">15 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Logísticos</div>
+                                        <div class="puestos__card">Analistas de <br>Logística</div>
+                                        <div class="puestos__card">Ingenieros de<br> Logísticas</div>
+                                        <div class="puestos__card">Gerentes de la<br> cadena de suministro</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/logistica.png" alt="logistica" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Logística</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            2Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            2Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            2Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            2Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Producción</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">25 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Supervisores de primera línea de<br> trabajadores de producción y operación</div>
+                                        <div class="puestos__card">Supervisores de primera línea de<br> trabajadores de producción y operación</div>
+                                        <div class="puestos__card">Gerentes de <br>Producción Industrial</div>
+                                        <div class="puestos__card">Ingenieros de<br> fabricación</div>
+                                        <div class="puestos__card">Empleados de producción,<br> planificación y expedición</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/produccion.png" alt="logistica" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Producción</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            3Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            3Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            3Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            3Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Adquisición</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">35 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Estimadores de <br>costos</div>
+                                        <div class="puestos__card">Empleados de<br> adquisiciones</div>
+                                        <div class="puestos__card">Agentes de compras, excepto productos<br> al por mayor, minoristas y agrícolas</div>
+                                        <div class="puestos__card">Gerentes de <br>Compras</div>
+                                        <div class="puestos__card">Compradores mayoristas y minoristas,<br> excepto productos agrícolas</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/produccion.png" alt="logistica" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Adquisición</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            4Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            4Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            4Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            4Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Ventas</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">70 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Autorizadores de crédito, <br>verificadores y empleados</div>
+                                        <div class="puestos__card">Representantes de <br>Servicio al Cliente</div>
+                                        <div class="puestos__card">Supervisores de primera línea de <br>trabajadores de ventas no minoristas</div>
+                                        <div class="puestos__card">Empleados de <br>Cuentas Nuevas</div>
+                                        <div class="puestos__card">Empleados de <br>pedidos</div>
+                                        <div class="puestos__card">Ingeniero de<br> ventas</div>
+                                        <div class="puestos__card">Gerentes de<br> Ventas</div>
+                                        <div class="puestos__card">Representantes de ventas, al por mayor y fabricación,<br> excepto productos técnicos y científicos</div>
+                                        <div class="puestos__card">Representantes de ventas, venta al por mayor<br> y fabricación, productos técnicos y científicos</div>
+                                        <div class="puestos__card">Empleados de envío, <br>recepción e inventario</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/ventas.png" alt="ventas" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Ventas</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            5Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            5Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            5Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            5Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Marketing</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">00 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Gerente de <br>Marketing</div>
+                                        <div class="puestos__card">Coordinador <br>de Marketing</div>
+                                        <div class="puestos__card">Ejecutivo de<br> Marketing</div>
+                                        <div class="puestos__card">Analista de<br> Marketing</div>
+                                        <div class="puestos__card">Asistente de<br> Marketing</div>
+                                        <div class="puestos__card">Director de<br> Marketing</div>
+                                        <div class="puestos__card">Especialista <br>en SEO y SEM</div>
+                                        <div class="puestos__card">Especialista <br>de branding</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/ventas.png" alt="marketing" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Marketing</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            6Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            6Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            6Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            6Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Atención al Cliente</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">00 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Representante de <br>servicio al cliente</div>
+                                        <div class="puestos__card">Agente de <br>atención al cliente</div>
+                                        <div class="puestos__card">Especialista en <br>soporte al cliente</div>
+                                        <div class="puestos__card">Coordinador de <br>servicio al cliente</div>
+                                        <div class="puestos__card">Ejecutivo de <br>atención al cliente</div>
+                                        <div class="puestos__card">Gerente de <br>servicio al cliente</div>
+                                        <div class="puestos__card">Asistente de <br>atención al cliente</div>
+                                        <div class="puestos__card">Analista de <br>experiencia del cliente</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/ventas.png" alt="atención al cliente" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Atención al Cliente</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            7Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            7Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            7Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            7Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Recursos Humanos</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">00 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Gerente de Recursos <br>Humanos</div>
+                                        <div class="puestos__card">Especialista en <br>reclutamiento y selección</div>
+                                        <div class="puestos__card">Coordinador de <br>recursos humanos</div>
+                                        <div class="puestos__card">Analista de recursos<br> humanos</div>
+                                        <div class="puestos__card">Generalista de <br>recursos humanos</div>
+                                        <div class="puestos__card">Especialista en <br>compensación y beneficios</div>
+                                        <div class="puestos__card">Responsable <br>de nómina</div>
+                                        <div class="puestos__card">Administrador <br>de personal</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/ventas.png" alt="recursos humanos" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Recursos Humanos</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            8Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            8Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            8Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            8Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de Legal</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">00 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Abogado</div>
+                                        <div class="puestos__card">Asociado <br>legal</div>
+                                        <div class="puestos__card">Asesor <br>jurídico</div>
+                                        <div class="puestos__card">Especialista en <br>contratos</div>
+                                        <div class="puestos__card">Gerente <br>legal</div>
+                                        <div class="puestos__card">Especialista en<br> propiedad intelectual</div>
+                                        <div class="puestos__card">Abogado <br>corporativo</div>
+                                        <div class="puestos__card">Abogado de<br> patentes</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/ventas.png" alt="legal" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">Legal</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            9Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            9Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            9Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            9Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AREA -->
+                        <div class="secGeneral__areas">
+                            <div class="elemento">
+                                <h4 class="secGeneral__subtitulo">Área de TI</h4>
+                                <div class="circulo miniCirculo">
+                                    <i class="fa-solid fa-angle-down circulo__flecha miniCirculo__flecha"></i>
+                                </div>
+                            </div>
+    
+                            <div class="bloque">
+                                <div class="secGeneral__contenido">
+                                    <p>Más de <strong class="secGeneral__contenido-strong">00 procesos</strong> para automatizar con <span class="secGeneral__contenido-strong secGeneral__contenido-color">RPA e IA</span> en los siguientes puestos:</p>
+        
+                                    <div class="puestos">
+                                        <div class="puestos__card">Administrador de<br> sistemas</div>
+                                        <div class="puestos__card">Desarrollador <br>de software</div>
+                                        <div class="puestos__card">Ingeniero de<br> redes</div>
+                                        <div class="puestos__card">Especialista en <br>seguridad informática</div>
+                                        <div class="puestos__card">Analista de <br>sistemas</div>
+                                        <div class="puestos__card">Especialista en <br>bases de datos</div>
+                                        <div class="puestos__card">Soporte <br>técnico</div>
+                                        <div class="puestos__card">Gerente de <br>proyectos de TI</div>
+                                    </div>
+                                </div>
+    
+                                <div class="secGeneral__procesos">
+                                    <div class="secGeneral__portada">
+                                        <img src="img/ventas.png" alt="ti" class="secGeneral__portada-img">
+                                        <span class="secGeneral__portada-texto">TI</span>
+                                    </div>
+                                    <div class="secGeneral__vista">
+                                        <div class="secGeneral__contenedor">
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Contadores y auditores</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            10Calcule los impuestos adeudados y prepare declaraciones de impuestos, asegurando el cumplimiento de los requisitos de pago, informes u otros impuestos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            10Desarrollar, mantener o analizar presupuestos, preparando informes periódicos
+                                                            que comparen los costos presupuestados con los costos reales.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+    
+                                            <div class="secGeneral__caja">
+                                                <div class="secGeneral__elemento">
+                                                    <p>Cobros de facturas y cuentas</p>
+                                                    <i class="fa-solid fa-angle-down secGeneral__flecha"></i>
+                                                </div>
+                                                <ul class="secGeneral__collapse">
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            10Localice y supervise las cuentas vencidas, utilizando computadoras y una
+                                                            variedad de sistemas automatizados.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                            <div class="etiquetas__hijo etiquetas__ia">
+                                                                <i class="fa-solid fa-brain"></i>
+                                                                <span class="etiquetas__span">IA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+            
+                                                    <li class="secGeneral__item">
+                                                        <div class="secGeneral__circulo"><i class="fa-solid fa-plus secGeneral__circulo-mas"></i><i class="fa-solid fa-minus secGeneral__circulo-menos"></i></div>
+                                                        <p class="texto">
+                                                            10Realizar diversas funciones administrativas para las cuentas asignadas, como
+                                                            registrar cambios de dirección y purgar los registros de clientes
+                                                            fallecidos.
+                                                        </p>
+                                                        <div class="etiquetas etiquetas-general">
+                                                            <div class="etiquetas__hijo etiquetas__rpa">
+                                                                <i class="fa-solid fa-robot"></i>
+                                                                <span class="etiquetas__span">RPA</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            
+    </section>
+
+    <!-- ! ---------------------- FORMULARIO ---------------------- -->
+
+    <section class="seccion secFormulario" id="formulario">
+        <div class="elemento">
+            <h2 class="h2">Formulario
+                <div class="subrayado">
+                    <div class="subrayado__linea1"></div>
+                    <div class="subrayado__linea2"></div>
+                </div>
+            </h2>
+            <div class="circulo circulo-oscuro">
+                <i class="fa-solid fa-angle-down circulo__flecha circulo__flecha-oscuro"></i>
+            </div>
+        </div>
+
+        <div class="bloque">
             <div class="contenido">
                 <h3 class="contenido__h3">Aquí están tus procesos seleccionados</h3>
                 <p class="contenido__descripcion contenido__descripcion-frase">
@@ -149,11 +1394,13 @@
             </div>
 
             <div class="botones">
-                <div class="botones__secundario">Seleccionar más</div>
+                <a href="#buscador" class="botones__secundario">Seleccionar más</a>
                 <div class="botones__primario">¡Cotiza ahora!</div>
             </div>
         </div>
     </section>
+
+    <!-- ! ---------------------- MENSAJES ---------------------- -->
 
     <div class="mensaje mensaje-agregado">
         <div class="mensaje__encabezado mensaje__encabezado-agregado">
