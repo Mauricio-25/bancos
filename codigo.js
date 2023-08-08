@@ -166,7 +166,7 @@ function seleccionar(card) {
 
   if (card.classList.contains("carrusel__card-seleccionado")) {
     mensajeAgregado.style.display = "inline-block";
-    mensajeAgregado.style.zIndex = "2";
+    mensajeAgregado.style.zIndex = "5";
     setTimeout(() => {
       mensajeAgregado.style.display = "none";
       mensajeAgregado.style.zIndex = "1";
@@ -180,7 +180,7 @@ function seleccionar(card) {
 
   } else {
     mensajeEliminado.style.display = "inline-block";
-    mensajeEliminado.style.zIndex = "2";
+    mensajeEliminado.style.zIndex = "5";
     setTimeout(() => {
       mensajeEliminado.style.display = "none";
       mensajeEliminado.style.zIndex = "1";
@@ -482,7 +482,7 @@ function seleccionarGeneral(item) {
 
   if (item.children[0].classList.contains("secGeneral__circulo-seleccionado")) {
     mensajeAgregado.style.display = "inline-block";
-    mensajeAgregado.style.zIndex = "2";
+    mensajeAgregado.style.zIndex = "5";
     setTimeout(() => {
       mensajeAgregado.style.display = "none";
       mensajeAgregado.style.zIndex = "1";
@@ -496,7 +496,7 @@ function seleccionarGeneral(item) {
 
   } else {
     mensajeEliminado.style.display = "inline-block";
-    mensajeEliminado.style.zIndex = "2";
+    mensajeEliminado.style.zIndex = "5";
     setTimeout(() => {
       mensajeEliminado.style.display = "none";
       mensajeEliminado.style.zIndex = "1";
@@ -695,3 +695,308 @@ function seleccionarBuscador(elemento) {
   llenarListaBuscador(buscador.value, combo.value);
 
 } 
+
+
+
+
+// ! --------------------------------------------------------------------------------------------------------------------------------------------
+// !                                                          SECCION PASOS A GANAR
+// ! --------------------------------------------------------------------------------------------------------------------------------------------
+
+// ?  ------------------------------------------------------ MOVER CARRUSEL --------------------------------------------------------------- */
+
+let botones = [];
+botones = document.querySelectorAll(".sliderResponsive__boton");
+
+let pasosContenido = document.querySelector(".sliderResponsive__contenido");
+
+function mover(padding) {
+
+  // * BARRA
+
+  for (i=0; i<botones.length; i++) {
+    if (i == padding) {
+      botones[i].classList.add("sliderResponsive__boton-activo");
+
+      if (padding != 0) {
+        botones[i-1].parentNode.classList.add("sliderResponsive__item-activo");
+      }
+
+      if (botones[i].parentNode.classList.contains("sliderResponsive__item-activo")){
+        botones[i].parentNode.classList.toggle("sliderResponsive__item-activo")
+      }
+      
+    } else {
+      botones[i].classList.remove("sliderResponsive__boton-activo");
+      botones[i].parentNode.classList.remove("sliderResponsive__item-activo");
+    }
+
+  }
+
+
+  // * Slider 
+  pasosContenido.style.marginLeft = `${padding*-100}%`
+
+}
+
+
+// ?  --------------------------------------------------- MOVER CARRUSEL RESPONSIVE ------------------------------------------------------------- */
+
+let barra = document.querySelector(".slider__barra");
+
+let slider__item = [];
+slider__item = document.querySelectorAll(".slider__item");
+
+let secAhorrar__contenido = document.querySelector(".secAhorrar__contenido");
+
+
+function moverSlider(padding, elemento) {
+  barra.style.width = `${100/4 * padding}%`;
+  secAhorrar__contenido.style.marginLeft = `${padding*-100}%`;
+
+  elemento.classList.add("slider__circulo-activo");
+  elemento.nextElementSibling.classList.add("slider__triangulos-activo");
+
+  for (i=0; i<slider__item.length; i++) {
+    if (i+1 != padding) {
+      slider__item[i].children[1].classList.remove("slider__circulo-activo");
+      slider__item[i].children[2].classList.remove("slider__triangulos-activo");
+    }
+
+    if (i+1<padding) {
+      slider__item[i].children[1].classList.add("slider__circulo-visto");
+      slider__item[i].children[2].classList.add("slider__triangulos-visto");
+    } else {
+      slider__item[i].children[1].classList.remove("slider__circulo-visto");
+      slider__item[i].children[2].classList.remove("slider__triangulos-visto");
+    }
+  }
+}
+
+// ?  ------------------------------------------------------ MOVER CARRUSEL QUE TE SIGA --------------------------------------------------------------- */
+
+let circuloMovil = []
+circuloMovil = document.querySelectorAll(".slider-movil__circulo");
+
+let barraMovil = document.querySelector(".slider-movil__barra");
+
+let textoMovil = []
+textoMovil = document.querySelectorAll(".slider-movil__p");
+
+let triangulosMovil = []
+triangulosMovil = document.querySelectorAll(".slider-movil__triangulos");
+
+let sliderMovil = document.querySelector(".slider-movil");
+
+// Selecciona el elemento que deseas observar
+const elige = document.querySelector('#buscador');
+
+// Crea una instancia de IntersectionObserver
+const observer = new IntersectionObserver((entries) => {
+  // entries es un array de objetos IntersectionObserverEntry
+  // cada objeto representa un cambio en la intersección de un elemento observado
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Si el elemento está intersectando con el viewport, ejecuta la función deseada
+      paso1();
+    }
+  });
+});
+
+// Observa el elemento seleccionado
+observer.observe(elige);
+
+function paso1() {
+  // Aquí puedes definir lo que quieres que suceda cuando el elemento entra en el viewport
+  barraMovil.style.width = `${100/4}%`;
+
+  for (i=0; i<circuloMovil.length; i++) {
+    if (i == 0) {
+      circuloMovil[i].classList.add("slider-movil__circulo-activo");
+      textoMovil[i].classList.add("slider-movil__p-activo");
+      triangulosMovil[i].classList.add("slider__triangulos-activo");
+    } else {
+      circuloMovil[i].classList.remove("slider-movil__circulo-activo");
+      textoMovil[i].classList.remove("slider-movil__p-activo");
+      triangulosMovil[i].classList.remove("slider__triangulos-activo");
+    }
+
+    triangulosMovil[i].classList.remove("slider__triangulos-visto");
+    circuloMovil[i].classList.remove("slider__circulo-visto");
+    
+  }
+  setTimeout(() => {
+    textoMovil[0].classList.remove("slider-movil__p-activo");
+  }, 1500);
+}
+
+
+
+
+// Selecciona el elemento que deseas observar
+const identifica = document.querySelector('.secCore');
+
+// Crea una instancia de IntersectionObserver
+const observer2 = new IntersectionObserver((entries) => {
+  // entries es un array de objetos IntersectionObserverEntry
+  // cada objeto representa un cambio en la intersección de un elemento observado
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Si el elemento está intersectando con el viewport, ejecuta la función deseada
+      paso2();
+    }
+  });
+});
+
+// Observa el elemento seleccionado
+observer2.observe(identifica);
+
+function paso2() {
+  // Aquí puedes definir lo que quieres que suceda cuando el elemento entra en el viewport
+  barraMovil.style.width = `${100/4 * 2}%`;
+
+  for (i=0; i<circuloMovil.length; i++) {
+    if (i == 1) {
+      circuloMovil[i].classList.add("slider-movil__circulo-activo");
+      textoMovil[i].classList.add("slider-movil__p-activo");
+      triangulosMovil[i].classList.add("slider__triangulos-activo");
+    } else {
+      circuloMovil[i].classList.remove("slider-movil__circulo-activo");
+      textoMovil[i].classList.remove("slider-movil__p-activo");
+      triangulosMovil[i].classList.remove("slider__triangulos-activo");
+    }
+
+    if (i < 1) {
+      triangulosMovil[i].classList.add("slider__triangulos-visto");
+      circuloMovil[i].classList.add("slider__circulo-visto");
+    } else {
+      triangulosMovil[i].classList.remove("slider__triangulos-visto");
+      circuloMovil[i].classList.remove("slider__circulo-visto");
+    }
+  }
+  setTimeout(() => {
+    textoMovil[1].classList.remove("slider-movil__p-activo");
+  }, 1500);
+}
+
+
+
+// Selecciona el elemento que deseas observar
+const cotiza = document.querySelector('#formulario');
+
+// Crea una instancia de IntersectionObserver
+const observer3 = new IntersectionObserver((entries) => {
+  // entries es un array de objetos IntersectionObserverEntry
+  // cada objeto representa un cambio en la intersección de un elemento observado
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Si el elemento está intersectando con el viewport, ejecuta la función deseada
+      paso3();
+    }
+  });
+});
+
+// Observa el elemento seleccionado
+observer3.observe(cotiza);
+
+function paso3() {
+  // Aquí puedes definir lo que quieres que suceda cuando el elemento entra en el viewport
+  barraMovil.style.width = `${100/4 * 3}%`;
+
+  for (i=0; i<circuloMovil.length; i++) {
+    if (i == 2) {
+      circuloMovil[i].classList.add("slider-movil__circulo-activo");
+      textoMovil[i].classList.add("slider-movil__p-activo");
+      triangulosMovil[i].classList.add("slider__triangulos-activo");
+    } else {
+      circuloMovil[i].classList.remove("slider-movil__circulo-activo");
+      textoMovil[i].classList.remove("slider-movil__p-activo");
+      triangulosMovil[i].classList.remove("slider__triangulos-activo");
+    }
+
+    if (i < 2) {
+      triangulosMovil[i].classList.add("slider__triangulos-visto");
+      circuloMovil[i].classList.add("slider__circulo-visto");
+    } else {
+      triangulosMovil[i].classList.remove("slider__triangulos-visto");
+      circuloMovil[i].classList.remove("slider__circulo-visto");
+    }
+  }
+
+  setTimeout(() => {
+    textoMovil[2].classList.remove("slider-movil__p-activo");
+  }, 1500);
+}
+
+
+
+
+// Selecciona el elemento que deseas observar
+const agenda = document.querySelector('#agenda');
+
+// Crea una instancia de IntersectionObserver
+const observer4 = new IntersectionObserver((entries) => {
+  // entries es un array de objetos IntersectionObserverEntry
+  // cada objeto representa un cambio en la intersección de un elemento observado
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Si el elemento está intersectando con el viewport, ejecuta la función deseada
+      paso4();
+    }
+  });
+});
+
+// Observa el elemento seleccionado
+observer4.observe(agenda);
+
+function paso4() {
+  // Aquí puedes definir lo que quieres que suceda cuando el elemento entra en el viewport
+  barraMovil.style.width = `${100/4 * 4}%`;
+
+  for (i=0; i<circuloMovil.length; i++) {
+    if (i == 3) {
+      circuloMovil[i].classList.add("slider-movil__circulo-activo");
+      textoMovil[i].classList.add("slider-movil__p-activo");
+      triangulosMovil[i].classList.add("slider__triangulos-activo");
+    } else {
+      circuloMovil[i].classList.remove("slider-movil__circulo-activo");
+      textoMovil[i].classList.remove("slider-movil__p-activo");
+      triangulosMovil[i].classList.remove("slider__triangulos-activo");
+    }
+
+    if (i < 3) {
+      triangulosMovil[i].classList.add("slider__triangulos-visto");
+      circuloMovil[i].classList.add("slider__circulo-visto");
+    } else {
+      triangulosMovil[i].classList.remove("slider__triangulos-visto");
+      circuloMovil[i].classList.remove("slider__circulo-visto");
+    }
+  }
+  setTimeout(() => {
+    textoMovil[3].classList.remove("slider-movil__p-activo");
+  }, 1500);
+}
+
+
+const ahorrar = document.querySelector('.secAhorrar');
+
+// Crea una instancia de IntersectionObserver
+const observerG = new IntersectionObserver((entries) => {
+  // entries es un array de objetos IntersectionObserverEntry
+  // cada objeto representa un cambio en la intersección de un elemento observado
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      // Si el elemento NO está intersectando con el viewport, ejecuta la función deseada
+      
+      sliderMovil.style.display = "block";
+    }
+    if (entry.isIntersecting) {
+      // Si el elemento NO está intersectando con el viewport, ejecuta la función deseada
+      
+      sliderMovil.style.display = "none";
+    }
+  });
+});
+
+// Observa el elemento seleccionado
+observerG.observe(ahorrar);
