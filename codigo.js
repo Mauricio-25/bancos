@@ -299,6 +299,13 @@ function llenarFomulario() {
     }
   
     codigoHTML = etiquetas.outerHTML;
+
+    if (etiquetasRpa !== null) {
+      etiquetasRpa.classList.remove('etiquetas__rpa-oscuro');
+    }
+    if (etiquetasIa !== null) {
+      etiquetasIa.classList.remove('etiquetas__ia-oscuro');
+    }
     
     procesos.innerHTML += `
       <div class="procesos__card">
@@ -339,6 +346,13 @@ function llenarFomulario() {
     }
   
     codigoHTML = etiquetas.outerHTML;
+
+    if (etiquetasRpa !== null) {
+      etiquetasRpa.classList.remove('etiquetas__rpa-oscuro');
+    }
+    if (etiquetasIa !== null) {
+      etiquetasIa.classList.remove('etiquetas__ia-oscuro');
+    }
 
     procesos.innerHTML += `
       <div class="procesos__card">

@@ -191,15 +191,15 @@ a {
 }
 .carrusel__contenedor {
     display: flex;
-    width: 200%;
+    width: 400%;
 }
 .carrusel__card {
-    width: 24%;
+    width: 12%;
     border: 3px solid var(--negro);
     border-radius: 30px;
     padding: 40px 45px;
-    margin-right: 1%;
-    margin-left: 1%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -293,13 +293,13 @@ a {
         grid-template-columns: 1fr;
     }
     .carrusel__contenedor {
-        width: 400%;
+        width: 800%;
     }
     .carrusel__card {
-        width: 24%;
+        width: 100%;
         padding: clamp(25px, 4.194vw, 40px);
-        margin-left: 0.5%;
-        margin-right: 0.5%;
+        margin-left: 0.125%;
+        margin-right: 0.125%;
     }
     .carrusel__boton{
         top: 15px;
@@ -408,7 +408,7 @@ a {
 }
   
 .scroll::-webkit-scrollbar-track {
-    background: rgba(50, 50, 50, 0.5); /* color del área de seguimiento */
+    background: transparent /* color del área de seguimiento */
  }
   
 .scroll::-webkit-scrollbar-thumb {
@@ -449,6 +449,10 @@ a {
     overflow: hidden;
     height: 0;
     transition: 0.5s ease;
+}
+.texto {
+    display: flex;
+    align-items: center;
 }
 .secGeneral__item {
     display: grid;
@@ -553,7 +557,7 @@ a {
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
     }
-    .etiquetas-general {
+    .secGeneral__item .etiquetas {
         grid-row: 2/3;
         grid-column: 2/3;
     }
