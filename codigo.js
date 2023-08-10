@@ -13,7 +13,12 @@ btnCirculo.forEach(elemento => {
   elemento.addEventListener("click", ()=>{
 
     let height = 0;
-    let bloque = elemento.parentNode.nextElementSibling;
+    let bloque = elemento.parentNode.parentNode.parentNode.querySelector(".bloque");
+
+    if (elemento.classList.contains("miniCirculo")) {
+      bloque = elemento.parentNode.parentNode.nextElementSibling.children[1];
+    }
+
     let flecha = elemento.children[0];
 
     if (bloque.clientHeight == "0") {
@@ -42,39 +47,11 @@ btnCirculo.forEach(elemento => {
   })
 });
 
+// ?  ------------------------------------------------------- MOVER CARRUSEL ------------------------------------------------------------------ */
 
-// ?  --------------------------------------------- AUTOMATIZAR EL TAMAÑO DEL CARRUSEL -------------------------------------------------------- */
-
-// * carrusel__contenedor
 const carrusel__contenedor = document.querySelector(".carrusel__contenedor");
 let carrusel__card = [];
 carrusel__card = document.querySelectorAll(".carrusel__card");
-/*
-let tamañoContenedor;
-if (carrusel__card.length % 2 == 0) {
-  tamañoContenedor = (carrusel__card.length / 2) * 100;
-} else {
-  tamañoContenedor = ((carrusel__card.length / 2) * 100) + 2;
-}
-
-carrusel__contenedor.style.width = `${tamañoContenedor}%`;
-
-
-// * carrusel__card
-let tamañoCard = 48 * 100 / tamañoContenedor;
-for (i=0; i < carrusel__card.length; i++) {
-  carrusel__card[i].style.width = `${tamañoCard}%`;
-}
-
-// * separacion
-let espacio = (4 * 100 / tamañoContenedor)/2;
-for (i=0; i < carrusel__card.length; i++) {
-  carrusel__card[i].style.marginRight = `${espacio}%`;
-  carrusel__card[i].style.marginLeft = `${espacio}%`;
-}
-*/
-
-// ?  ------------------------------------------------------- MOVER CARRUSEL ------------------------------------------------------------------ */
 
 let margin = 0;
 
