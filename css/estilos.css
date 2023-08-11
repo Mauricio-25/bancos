@@ -657,7 +657,7 @@ a {
     border-radius: 15px;
     color: var(--negro);
     transform: translateY(30px);
-    z-index: 4;
+    z-index: 3;
     box-shadow: 0 0 5px var(--gris);
     max-height: 424px;
     overflow: auto;

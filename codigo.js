@@ -126,20 +126,25 @@ function moverIzquierda(flecha) { // Clonar y luego mover
 
 // ? ---------------------------------------------- AÑADIR DISEÑO AL SER SELECCIONADO ------------------------------------------------------- */
 
+const lista = document.querySelector(".buscador__lista");
+const mensajeAgregado = document.querySelector(".mensaje-agregado");
+const mensajeEliminado = document.querySelector(".mensaje-eliminado");
+
 for (i=0; i<carrusel__card.length; i++) {
-  carrusel__card[i].setAttribute('onclick', 'seleccionar(this)');
+  carrusel__card[i].setAttribute('onclick', `seleccionar(this, ${i})`);
+  carrusel__card[i].setAttribute('data-posicion', `${i}`);
 }
 
-function seleccionar(card) {
+function seleccionar(card, indice) {
   card.classList.toggle("carrusel__card-seleccionado");
   card.children[0].classList.toggle("carrusel__boton-seleccionado");
   card.children[1].classList.toggle("carrusel__pic-seleccionado");
 
   llenarFomulario();
+  
+  lista.children[indice].children[0].classList.toggle("buscador__circulo-seleccionado");
 
   // * Mostrar el mensaje
-  let mensajeAgregado = document.querySelector(".mensaje-agregado");
-  let mensajeEliminado = document.querySelector(".mensaje-eliminado");
 
   if (card.classList.contains("carrusel__card-seleccionado")) {
     mensajeAgregado.style.display = "inline-block";
@@ -253,125 +258,122 @@ function moverIzquierdaResp(flecha) { // Clonar y luego mover
 
 // ? ------------------------------------------------------ AÑADIR AL FORMULARIO --------------------------------------------------------------- */
 
+const procesos = document.querySelector(".procesos");
+
 function llenarFomulario() {
   // * LLenar los procesos core
-  let seleccionadosCore = [];
-  seleccionadosCore = document.querySelectorAll(".carrusel__card-seleccionado");
+  
+  let carrusel__card = [];
+  carrusel__card = document.querySelectorAll(".carrusel__card");
 
-  let procesos = document.querySelector(".procesos");
   procesos.innerHTML = "";
 
-  for (i=0; i<seleccionadosCore.length; i++) {
-    let subtitulo = seleccionadosCore[i].children[2].innerHTML;
-    let texto = seleccionadosCore[i].children[3].innerHTML;
-    let etiquetas = seleccionadosCore[i].children[4];
-    var etiquetasRpa = etiquetas.querySelector('.etiquetas__rpa');
-    var etiquetasIa = etiquetas.querySelector('.etiquetas__ia');
+  for (i=0; i<carrusel__card.length; i++) {
+    if (carrusel__card[i].classList.contains("carrusel__card-seleccionado")) {
+      let subtitulo = carrusel__card[i].children[2].innerHTML;
+      let texto = carrusel__card[i].children[3].innerHTML;
+      let etiquetas = carrusel__card[i].children[4];
+      var etiquetasRpa = etiquetas.querySelector('.etiquetas__rpa');
+      var etiquetasIa = etiquetas.querySelector('.etiquetas__ia');
 
-    if (etiquetasRpa !== null) {
-      etiquetasRpa.classList.add('etiquetas__rpa-oscuro');
-    }
-    if (etiquetasIa !== null) {
-      etiquetasIa.classList.add('etiquetas__ia-oscuro');
-    }
-  
-    codigoHTML = etiquetas.outerHTML;
-
-    if (etiquetasRpa !== null) {
-      etiquetasRpa.classList.remove('etiquetas__rpa-oscuro');
-    }
-    if (etiquetasIa !== null) {
-      etiquetasIa.classList.remove('etiquetas__ia-oscuro');
-    }
+      if (etiquetasRpa !== null) {
+        etiquetasRpa.classList.add('etiquetas__rpa-oscuro');
+      }
+      if (etiquetasIa !== null) {
+        etiquetasIa.classList.add('etiquetas__ia-oscuro');
+      }
     
-    procesos.innerHTML += `
-      <div class="procesos__card">
-        <div class="procesos__eliminar"><i class="fa-solid fa-xmark" onclick="eliminarProcesoCore('${subtitulo}')"></i></div>
+      codigoHTML = etiquetas.outerHTML;
 
-        <div class="procesos__contenido">
-            <strong class="procesos__subtitulo">${subtitulo}</strong>
-            <p class="procesos__texto">
-                ${texto}
-            </p>
+      if (etiquetasRpa !== null) {
+        etiquetasRpa.classList.remove('etiquetas__rpa-oscuro');
+      }
+      if (etiquetasIa !== null) {
+        etiquetasIa.classList.remove('etiquetas__ia-oscuro');
+      }
+      
+      procesos.innerHTML += `
+        <div class="procesos__card">
+          <div class="procesos__eliminar"><i class="fa-solid fa-xmark" onclick="eliminarProcesoCore(${carrusel__card[i].dataset.posicion})"></i></div>
+
+          <div class="procesos__contenido">
+              <strong class="procesos__subtitulo">${subtitulo}</strong>
+              <p class="procesos__texto">
+                  ${texto}
+              </p>
+          </div>
+
+          ${codigoHTML}
         </div>
-
-        ${codigoHTML}
-      </div>
-    `;
+      `;
+    }
 
   }
 
   // * Llenar los procesos generales 
-  let seleccionadosGeneral = [];
-  seleccionadosGeneral = document.querySelectorAll(".secGeneral__circulo-seleccionado");
+  for (i=0; i<secGeneral__item.length; i++) {
+    if (secGeneral__item[i].children[0].classList.contains("secGeneral__circulo-seleccionado")) {
+      let subtitulo = secGeneral__item[i].parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML;
+      let texto = secGeneral__item[i].children[1].innerHTML;
 
-  for (i=0; i<seleccionadosGeneral.length; i++) {
-    let subtitulo = seleccionadosGeneral[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML;
-    let texto = seleccionadosGeneral[i].parentNode.children[1].innerHTML;
+      let etiquetas = secGeneral__item[i].children[2];
+      etiquetas.classList.remove('etiquetas-general');
 
-    let etiquetas = seleccionadosGeneral[i].parentNode.children[2];
-    etiquetas.classList.remove('etiquetas-general');
+      var etiquetasRpa = etiquetas.querySelector('.etiquetas__rpa');
+      var etiquetasIa = etiquetas.querySelector('.etiquetas__ia');
 
-    var etiquetasRpa = etiquetas.querySelector('.etiquetas__rpa');
-    var etiquetasIa = etiquetas.querySelector('.etiquetas__ia');
+      if (etiquetasRpa !== null) {
+        etiquetasRpa.classList.add('etiquetas__rpa-oscuro');
+      }
+      if (etiquetasIa !== null) {
+        etiquetasIa.classList.add('etiquetas__ia-oscuro');
+      }
+    
+      codigoHTML = etiquetas.outerHTML;
 
-    if (etiquetasRpa !== null) {
-      etiquetasRpa.classList.add('etiquetas__rpa-oscuro');
-    }
-    if (etiquetasIa !== null) {
-      etiquetasIa.classList.add('etiquetas__ia-oscuro');
-    }
-  
-    codigoHTML = etiquetas.outerHTML;
+      if (etiquetasRpa !== null) {
+        etiquetasRpa.classList.remove('etiquetas__rpa-oscuro');
+      }
+      if (etiquetasIa !== null) {
+        etiquetasIa.classList.remove('etiquetas__ia-oscuro');
+      }
 
-    if (etiquetasRpa !== null) {
-      etiquetasRpa.classList.remove('etiquetas__rpa-oscuro');
-    }
-    if (etiquetasIa !== null) {
-      etiquetasIa.classList.remove('etiquetas__ia-oscuro');
-    }
+      procesos.innerHTML += `
+        <div class="procesos__card">
+          <div class="procesos__eliminar"><i class="fa-solid fa-xmark" onclick="eliminarProcesoGeneral(${i+8});"></i></div>
 
-    procesos.innerHTML += `
-      <div class="procesos__card">
-        <div class="procesos__eliminar"><i class="fa-solid fa-xmark" onclick="eliminarProcesoGeneral('${texto.replace(/\s+/g, "")}');"></i></div>
+          <div class="procesos__contenido">
+              <strong class="procesos__subtitulo">${subtitulo}</strong>
+              <p class="procesos__texto">
+                  ${texto}
+              </p>
+          </div>
 
-        <div class="procesos__contenido">
-            <strong class="procesos__subtitulo">${subtitulo}</strong>
-            <p class="procesos__texto">
-                ${texto}
-            </p>
+          ${codigoHTML}
         </div>
-
-        ${codigoHTML}
-      </div>
-    `;
+      `;
+    }
 
   }
 
 }
 
 
-function eliminarProcesoCore(nombre) {
-  let seleccionadosCore = [];
-  seleccionadosCore = document.querySelectorAll(".carrusel__card-seleccionado");
+function eliminarProcesoCore(indice) {
+  let carrusel__card = [];
+  carrusel__card = document.querySelectorAll(".carrusel__card");
 
-  for (i=0; i<seleccionadosCore.length; i++) {
-    if (seleccionadosCore[i].querySelector('.carrusel__titulo').innerHTML == nombre) {
-      seleccionar(seleccionadosCore[i]);
+  carrusel__card.forEach(elemento => {
+    if (elemento.dataset.posicion == indice) {
+      seleccionar(elemento, indice);
     }
-  }
+  });
+  
 }
 
 
-function eliminarProcesoGeneral(nombre) {
-  let seleccionadosGeneral = [];
-  seleccionadosGeneral = document.querySelectorAll(".secGeneral__circulo-seleccionado");
-
-  for (i=0; i<seleccionadosGeneral.length; i++) {
-    if (seleccionadosGeneral[i].parentNode.children[1].innerHTML.replace(/\s+/g, "") == nombre) {
-      seleccionarGeneral(seleccionadosGeneral[i].parentNode);
-    }
-  }
+function eliminarProcesoGeneral(indice) {
+  seleccionarGeneral(secGeneral__item[indice-8], indice);
 }
 
 
@@ -459,17 +461,17 @@ let secGeneral__item = [];
 secGeneral__item = document.querySelectorAll(".secGeneral__item");
 
 for (i=0; i<secGeneral__item.length; i++) {
-  secGeneral__item[i].setAttribute('onclick', 'seleccionarGeneral(this)');
+  secGeneral__item[i].setAttribute('onclick', `seleccionarGeneral(this, ${i+8})`);
 }
 
-function seleccionarGeneral(item) {
+function seleccionarGeneral(item, indice) {
   item.children[0].classList.toggle("secGeneral__circulo-seleccionado");
+
+  lista.children[indice].children[0].classList.toggle("buscador__circulo-seleccionado");
 
   llenarFomulario();
 
   // * Mostrar el mensaje
-  let mensajeAgregado = document.querySelector(".mensaje-agregado");
-  let mensajeEliminado = document.querySelector(".mensaje-eliminado");
 
   if (item.children[0].classList.contains("secGeneral__circulo-seleccionado")) {
     mensajeAgregado.style.display = "inline-block";
@@ -512,10 +514,12 @@ function seleccionarGeneral(item) {
 
 // ?  ------------------------------------------------------ COMBOBOX --------------------------------------------------------------- */
 
-function escribirCmb(elemento) {
-  let cmb = document.querySelector(".buscador__input-cmb");
+const combo = document.querySelector(".buscador__input-cmb");
+const buscador = document.querySelector(".buscador__input-pro");
 
-  cmb.value = elemento.innerHTML;
+function escribirCmb(elemento) {
+
+  combo.value = elemento.innerHTML;
 
   let height = 0;
   let bloque = elemento.parentNode;
@@ -525,40 +529,29 @@ function escribirCmb(elemento) {
     }
     
     bloque.style.height = `${height}px`;
+
+  for (i=0; i<lista.length; i++) {
+    if (lista[i].dataset.area == combo) {
+      lista[i].style.display = "grid";
+    } else {
+      lista[i].style.display = "none";
+    }
+  }
 }
 
 
 // ?  ------------------------------------------------------ FOCUS --------------------------------------------------------------- */
 
-let buscador = document.querySelector(".buscador__input-pro");
-let lista = document.querySelector(".buscador__lista");
-
 buscador.addEventListener("click", ()=>{
-  let combo = document.querySelector(".buscador__input-cmb");
-
   lista.style.display = "block";
-  llenarListaBuscador(buscador.value, combo.value);
-});
 
-
-document.addEventListener("mousedown", (event)=>{
-  if(!buscador.contains(event.target) && !lista.contains(event.target)){
-      lista.style.display = "none";
-  }
-});
-
-// ?  ------------------------------------------------------ TECLADO --------------------------------------------------------------- */
-
-buscador.addEventListener("keyup",(e)=>{
-  
-  let lista = document.querySelector(".buscador__lista");
-  let combo = document.querySelector(".buscador__input-cmb").value;
+  let cmb = combo.value;
 
   let encontrado = false;
   let texto = buscador.value.toUpperCase();
 
     for (i=0; i<lista.children.length-1; i++){
-      if(lista.children[i].children[1].textContent.toUpperCase().includes(texto) && (lista.children[i].dataset.area == combo || combo == "")) {
+      if(lista.children[i].children[1].textContent.toUpperCase().includes(texto) && (lista.children[i].dataset.area == cmb || cmb == "")) {
         lista.children[i].style.display = "grid";
         encontrado = true;
       } else {
@@ -574,71 +567,73 @@ buscador.addEventListener("keyup",(e)=>{
 });
 
 
-function llenarListaBuscador(texto, combo) {
+document.addEventListener("mousedown", (event)=>{
+  if(!buscador.contains(event.target) && !lista.contains(event.target)){
+      lista.style.display = "none";
+  }
+});
 
-  let proc = texto.toUpperCase();
+// ?  ------------------------------------------------------ TECLADO --------------------------------------------------------------- */
+
+buscador.addEventListener("keyup",(e)=>{
+  let cmb = combo.value;
+
+  let encontrado = false;
+  let texto = buscador.value.toUpperCase();
+
+    for (i=0; i<lista.children.length-1; i++){
+      if(lista.children[i].children[1].textContent.toUpperCase().includes(texto) && (lista.children[i].dataset.area == cmb || cmb == "")) {
+        lista.children[i].style.display = "grid";
+        encontrado = true;
+      } else {
+        lista.children[i].style.display = "none";
+      }
+    }
+
+    if(!encontrado) {
+      lista.children[lista.children.length-1].style.display = "flex";
+    } else {
+      lista.children[lista.children.length-1].style.display = "none";
+    }
+});
+
+llenarLista();
+
+function llenarLista() {
 
   //* Listar Procesos CORE
-  let procesosCore = [];
-  procesosCore = document.querySelectorAll(".carrusel__card");
-  
-  let lista = document.querySelector(".buscador__lista");
   lista.innerHTML = "";
 
-  for (i=0; i<procesosCore.length; i++) {
-    if (procesosCore[i].classList.contains("carrusel__card-seleccionado") && procesosCore[i].children[2].innerHTML.toUpperCase().includes(proc) && (combo == "Operación" || combo == "")) {
-      lista.innerHTML += `
-        <div class="buscador__item" onclick="seleccionarBuscador(this)" data-area="Operación">
-          <div class="buscador__circulo buscador__circulo-seleccionado"><i class="fa-solid fa-plus buscador__circulo-mas"></i><i class="fa-solid fa-minus buscador__circulo-menos"></i></div>
-          <span>${procesosCore[i].children[2].innerHTML}</span>
+  let indice = 0;
 
-          <div class="etiquetas etiquetas-buscador">
-            ${procesosCore[i].querySelector(".etiquetas").innerHTML}
-          </div>
-        </div>
-      `;
-    } else if (procesosCore[i].children[2].innerHTML.toUpperCase().includes(proc) && (combo == "Operación" || combo == "")) {
-      lista.innerHTML += `
-        <div class="buscador__item" onclick="seleccionarBuscador(this)" data-area="Operación">
-          <div class="buscador__circulo"><i class="fa-solid fa-plus buscador__circulo-mas"></i><i class="fa-solid fa-minus buscador__circulo-menos"></i></div>
-          <span>${procesosCore[i].children[2].innerHTML}</span>
+  for (i=0; i<carrusel__card.length; i++) {
+    lista.innerHTML += `
+      <div class="buscador__item" onclick="seleccionarBuscador(this, ${carrusel__card[i].dataset.posicion})" data-area="Operación">
+        <div class="buscador__circulo"><i class="fa-solid fa-plus buscador__circulo-mas"></i><i class="fa-solid fa-minus buscador__circulo-menos"></i></div>
+        <span>${carrusel__card[i].children[2].innerHTML}</span>
 
-          <div class="etiquetas etiquetas-buscador">
-            ${procesosCore[i].querySelector(".etiquetas").innerHTML}
-          </div>
+        <div class="etiquetas etiquetas-buscador">
+          ${carrusel__card[i].querySelector(".etiquetas").innerHTML}
         </div>
-      `;
-    }
+       </div>
+    `;
+    indice++;
   }
 
   //* Listar Procesos GENERALES
-  let procesosGenerales = [];
-  procesosGenerales = document.querySelectorAll(".secGeneral__item");
 
-  for (i=0; i<procesosGenerales.length; i++) {
-    if (procesosGenerales[i].children[0].classList.contains("secGeneral__circulo-seleccionado") && procesosGenerales[i].children[1].innerHTML.toUpperCase().includes(proc) && (combo == procesosGenerales[i].parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML || combo == "")) {
-      lista.innerHTML += `
-        <div class="buscador__item" onclick="seleccionarBuscador(this)" data-area="${procesosGenerales[i].parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML}">
-          <div class="buscador__circulo buscador__circulo-seleccionado"><i class="fa-solid fa-plus buscador__circulo-mas"></i><i class="fa-solid fa-minus buscador__circulo-menos"></i></div>
-          <span>${procesosGenerales[i].children[1].innerHTML}</span>
+  for (i=0; i<secGeneral__item.length; i++) {
+    lista.innerHTML += `
+      <div class="buscador__item" onclick="seleccionarBuscador(this, ${indice})" data-area="${secGeneral__item[i].parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML}">
+        <div class="buscador__circulo"><i class="fa-solid fa-plus buscador__circulo-mas"></i><i class="fa-solid fa-minus buscador__circulo-menos"></i></div>
+        <span>${secGeneral__item[i].children[1].innerHTML}</span>
 
-          <div class="etiquetas etiquetas-buscador">
-            ${procesosGenerales[i].querySelector(".etiquetas").innerHTML}
-          </div>
+        <div class="etiquetas etiquetas-buscador">
+          ${secGeneral__item[i].querySelector(".etiquetas").innerHTML}
         </div>
-      `;
-    } else if (procesosGenerales[i].children[1].innerHTML.toUpperCase().includes(proc) && (combo == procesosGenerales[i].parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML || combo == "")) {
-      lista.innerHTML += `
-        <div class="buscador__item" onclick="seleccionarBuscador(this)" data-area="${procesosGenerales[i].parentNode.parentNode.parentNode.parentNode.parentNode.children[0].children[1].innerHTML}">
-          <div class="buscador__circulo"><i class="fa-solid fa-plus buscador__circulo-mas"></i><i class="fa-solid fa-minus buscador__circulo-menos"></i></div>
-          <span>${procesosGenerales[i].children[1].innerHTML}</span>
-
-          <div class="etiquetas etiquetas-buscador">
-            ${procesosGenerales[i].querySelector(".etiquetas").innerHTML}
-          </div>
-        </div>
-      `;
-    }
+      </div>
+    `;
+    indice++;
   }
 
   //* No se encontro 
@@ -650,40 +645,27 @@ function llenarListaBuscador(texto, combo) {
 }
 
 
-
 // ?  ------------------------------------------------------ AGREGAR AL FORMULARIO --------------------------------------------------------------- */
 
-function seleccionarBuscador(elemento) {
-
-  let buscador = document.querySelector(".buscador__input-pro");
-  let combo = document.querySelector(".buscador__input-cmb");
+function seleccionarBuscador(elemento, indice) {
 
   if (elemento.dataset.area == "Operación") {
     // * CORE 
-    let procesosCore = [];
-    procesosCore = document.querySelectorAll(".carrusel__titulo");
+    let carrusel__card = [];
+    carrusel__card = document.querySelectorAll(".carrusel__card");
 
-    for (i=0; i<procesosCore.length; i++) {
-      if (procesosCore[i].innerHTML == elemento.children[1].innerHTML) {
-        seleccionar(procesosCore[i].parentNode);
+    carrusel__card.forEach(e => {
+      if (e.dataset.posicion == indice) {
+        console.log(e)
+        seleccionar(e, indice);
       }
-    }
+    });
   }
-
   
   else {
     // * GENERAL
-    let procesosGeneral = [];
-    procesosGeneral = document.querySelectorAll(".texto");
-
-    for (i=0; i<procesosGeneral.length; i++) {
-      if (procesosGeneral[i].innerHTML == elemento.children[1].innerHTML) {
-        seleccionarGeneral(procesosGeneral[i].parentNode);
-      }
-    }
+    seleccionarGeneral(secGeneral__item[indice-8], indice); /* cambia */
   }
-
-  llenarListaBuscador(buscador.value, combo.value);
 
 } 
 
@@ -780,7 +762,7 @@ triangulosMovil = document.querySelectorAll(".slider-movil__triangulos");
 let sliderMovil = document.querySelector(".slider-movil");
 
 // Selecciona el elemento que deseas observar
-const elige = document.querySelector('#buscador');
+const elige = document.querySelector('#separador');
 
 // Crea una instancia de IntersectionObserver
 const observer = new IntersectionObserver((entries) => {
