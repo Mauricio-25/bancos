@@ -232,8 +232,12 @@ a {
 .carrusel__pic {
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 80px;
-    margin-bottom: 35px;
+    margin-bottom: clamp(12px, 3.032vw, 35px);
+}
+.carrusel__pic .carrusel__pic-anaranjado {
+    display: none;
 }
 .carrusel__boton {
     display: none;
@@ -256,8 +260,11 @@ a {
 .carrusel__card-seleccionado {
     border: 3px solid var(--anaranjado);
 }
-.carrusel__pic-seleccionado {
-    color: var(--anaranjado);
+.carrusel__pic-seleccionado .carrusel__pic-negro {
+    display: none;
+}
+.carrusel__pic-seleccionado .carrusel__pic-anaranjado {
+    display: block;
 }
 .carrusel__boton-seleccionado {
     display: inline-flex;
@@ -321,6 +328,12 @@ a {
     .fleDesplegado {
         transform: rotate(180deg) translateY(0px);
     }
+
+    .carrusel__pic {
+        width: 70%;
+        align-self: center;
+    }
+    
 }
 
 
