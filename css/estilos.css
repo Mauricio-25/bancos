@@ -398,9 +398,14 @@ a {
     border-radius: 12px;
     border: 2px solid var(--negro);
     text-align: center;
-    cursor: default;
+    cursor: pointer;
     display: flex;
     align-items: center;
+}
+.puestos__card:hover {
+    background-color: var(--anaranjado);
+    color: var(--blanco);
+    box-shadow: 0 0 5px var(--negro), 0 0 15px var(--negro), 0 0 35px var(--negro);
 }
 
 /* * MINICIRCULO */

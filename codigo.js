@@ -973,3 +973,62 @@ const observerG = new IntersectionObserver((entries) => {
 
 // Observa el elemento seleccionado
 observerG.observe(ahorrar);
+
+
+
+
+
+// MOVER
+function scrollPuestos(posicion) {
+  let element;
+  if (posicion <= 9) {
+    element = document.getElementById('finanzas');
+  } else if (posicion <= 13) {
+    element = document.getElementById('logistica');
+  } else if (posicion <= 18) {
+    element = document.getElementById('produccion');
+  } else if (posicion <= 23) {
+    element = document.getElementById('adquisicion');
+  } else if (posicion <= 33) {
+    element = document.getElementById('ventas');
+  } else if (posicion <= 41) {
+    element = document.getElementById('marketing');
+  } else if (posicion <= 44) {
+    element = document.getElementById('atencion');
+  } else if (posicion <= 49) {
+    element = document.getElementById('rrhh');
+  } else if (posicion <= 65) {
+    element = document.getElementById('legal');
+  } else if (posicion <= 70) {
+    element = document.getElementById('ti');
+  }
+  var headerOffset = 193;
+  var elementPosition = element.getBoundingClientRect().top;
+  var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
+
+  for (i=0; i<secGeneral__elemento.length; i++) {
+    if (i == posicion) {
+      secGeneral__elemento[i].classList.add("secGeneral__elemento-desplegado");
+
+      let desplegable = secGeneral__elemento[i].nextElementSibling;
+      let height = desplegable.scrollHeight;
+
+      desplegable.style.height = `${height}px`;
+    }
+
+    else {
+      if (secGeneral__elemento[i].classList.contains("secGeneral__elemento-desplegado")){
+        secGeneral__elemento[i].classList.toggle("secGeneral__elemento-desplegado");
+
+        let desplegable = secGeneral__elemento[i].nextElementSibling;
+
+        desplegable.style.height = `0px`;
+      }
+    }
+  }
+}
